@@ -162,7 +162,7 @@ Install Selenium menggunakan perintah:
 
 ```bash
 pip install -r requirements.txt
-
+```
 ## Menjalankan Pengujian
 
 ### Pengujian Dasar
