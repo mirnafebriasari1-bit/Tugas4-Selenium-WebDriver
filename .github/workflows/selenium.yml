@@ -2,9 +2,9 @@ name: Selenium WebDriver CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   selenium-test:
@@ -27,5 +27,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Selenium test
-        run: python tugas4_ci.py
+      - name: Run pytest
+        env:
+          HEADLESS: "1"
+        run: python -m pytest -v --html=report.html --self-contained-html
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: laporan-pengujian
+          path: |
+            report.html
+            screenshots/
